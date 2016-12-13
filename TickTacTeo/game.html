@@ -23,14 +23,16 @@
             <td></td>
         </tr>
     </table>
-    <input type="checkbox" name="startFromX" checked />Start from  "X"
+    <input type="checkbox" id="startFromX" checked="checked" onclick="IsX()" />Start from  "X"
     <input type="button" value="New Game" onclick="ClearGame()" />
     <script>
 
-        if (this.startFromX)
-            var sign = "X";
-        else
+        var sign = "X";
+        if (document.getElementById("startFromX").checked) {
+            sign = "X";
+        } else {
             sign = "O";
+        }
         var tds = document.querySelectorAll("td");
         var vinner;
 
@@ -56,12 +58,25 @@
             });
         });
 
-        function ClearGame()
+        function IsX()
         {
-            for (var i = 0; i < tds.length; i++) {
-                tds[i].innerHTML = "";
+            if (document.getElementById("startFromX").checked) {
+                sign = "X";
+            } else {
+                sign = "O";
             }
         }
+
+            function ClearGame() {
+                if (document.getElementById("startFromX").checked) {
+                    sign = "X";
+                } else {
+                    sign = "O";
+                }
+                for (var i = 0; i < tds.length; i++) {
+                    tds[i].innerHTML = "";
+                }
+            }
 
     </script>
 </body>
